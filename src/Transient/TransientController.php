@@ -2,10 +2,14 @@
 
 namespace Trteeb\Transient;
 
+use Trteeb\MiUsage\MiUsageConroller;
+
 class TransientController {
 	private $transient_key = 'trteeb_challenge_data';
+	private $miusage;
 
 	public function __construct() {
+		$this->miusage = new MiUsageConroller();
 	}
 
 	private function is_transient_valid() {
@@ -18,7 +22,10 @@ class TransientController {
 
 	private function refresh_transient() {
 		// call the API and set the transient value
-		$this->set( 'Sample data' );
+		$data = $this->miusage->get_data();
+		if ( ! empty( $data ) ) {
+			$this->set( $data );
+		}
 	}
 
 	public function get() {
@@ -30,5 +37,9 @@ class TransientController {
 
 	public function set( $data ) {
 		set_transient( $this->transient_key, $data, HOUR_IN_SECONDS );
+	}
+
+	public function delete() {
+		delete_transient( $this->transient_key );
 	}
 }

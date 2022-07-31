@@ -22,6 +22,7 @@ class ComposerStaticInit1f71164ed62a7947be85dc1be1e5956d
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Trteeb\\MiUsage\\MiUsageConroller' => __DIR__ . '/../..' . '/src/MiUsage/MiUsageConroller.php',
         'Trteeb\\Transient\\TransientController' => __DIR__ . '/../..' . '/src/Transient/TransientController.php',
     );
 

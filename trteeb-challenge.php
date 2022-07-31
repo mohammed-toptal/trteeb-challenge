@@ -78,10 +78,11 @@ class TrteebChallenge {
 	*/
 	private function __construct() {
         // $transient_controller = new TransientController();
+        // $transient_controller->delete();
         // echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@';
         // var_dump( $transient_controller->get() );
         // echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@';
-        
+
         // register_activation_hook( __FILE__,   array( __CLASS__, 'activator' ) );
         // register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivator' ) );
         // register_uninstall_hook( __FILE__,    array( __CLASS__, 'uninstaller' ) );

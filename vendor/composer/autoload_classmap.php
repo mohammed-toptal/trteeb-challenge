@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Trteeb\\MiUsage\\MiUsageConroller' => $baseDir . '/src/MiUsage/MiUsageConroller.php',
     'Trteeb\\Transient\\TransientController' => $baseDir . '/src/Transient/TransientController.php',
 );
