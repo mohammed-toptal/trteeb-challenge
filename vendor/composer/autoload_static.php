@@ -24,6 +24,7 @@ class ComposerStaticInit1f71164ed62a7947be85dc1be1e5956d
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Trteeb\\MiUsage\\MiUsageConroller' => __DIR__ . '/../..' . '/src/MiUsage/MiUsageConroller.php',
         'Trteeb\\Transient\\TransientController' => __DIR__ . '/../..' . '/src/Transient/TransientController.php',
+        'Trteeb\\WPCLI\\WPCLI' => __DIR__ . '/../..' . '/src/WPCLI/WPCLI.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

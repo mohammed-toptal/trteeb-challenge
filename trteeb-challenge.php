@@ -93,6 +93,8 @@ class TrteebChallenge {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+
+        add_action( 'cli_init', array( $this, 'wp_cli_register_commands' ) );
     }
 
     /**
@@ -124,6 +126,10 @@ class TrteebChallenge {
 	public function load_textdomain() {
 		load_plugin_textdomain( 'trteeb', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
+
+    public function wp_cli_register_commands() {
+        WP_CLI::add_command( 'trteeb', '\\Trteeb\WPCLI\WPCLI' );
+    }
 }
 
 $TrteebChallenge = TrteebChallenge::get_instance();
