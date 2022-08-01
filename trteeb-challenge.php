@@ -13,12 +13,14 @@ if( ! defined('ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-define( 'TRTEEB__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'TRTEEB__PLUGIN_MAIN_FILE', __FILE__ );
+define( 'TRTEEB__PLUGIN_DIR', plugin_dir_path( TRTEEB__PLUGIN_MAIN_FILE ) );
 
 require_once( TRTEEB__PLUGIN_DIR . 'vendor/autoload.php' );
 
 use Trteeb\Shortcode\ShortcodeController;
 use Trteeb\AJAX\AJAXController;
+use Trteeb\Gutenberg\GutenbergController;
 
 /* -----------------
  *      CLASS
@@ -79,8 +81,10 @@ class TrteebChallenge {
     * @access  protected
 	*/
 	private function __construct() {
+        define( 'TRTEEB__PLUGIN_VER', $this->get_version() );
         $shortcode_controller = new ShortcodeController();
         $ajax_controller      = new AJAXController();
+        $gutenberg_controller = new GutenbergController();
         // register_activation_hook( __FILE__,   array( __CLASS__, 'activator' ) );
         // register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivator' ) );
         // register_uninstall_hook( __FILE__,    array( __CLASS__, 'uninstaller' ) );
@@ -94,6 +98,10 @@ class TrteebChallenge {
         add_shortcode( 'trteeb_data', array($shortcode_controller, 'shortcode') );
         add_action( 'wp_ajax_trteeb_data', array($ajax_controller, 'ajax_handler') );
         add_action( 'wp_ajax_nopriv_trteeb_data', array($ajax_controller, 'ajax_handler') );
+
+        add_action( 'enqueue_block_editor_assets', array( $gutenberg_controller, 'enqueue_block_editor_assets' ) );
+        add_action( 'enqueue_block_assets', array( $gutenberg_controller, 'enqueue_block_assets' ) );
+        add_action( 'init', array( $gutenberg_controller, 'register_trteeb_block' ) );
     }
 
     /**
@@ -103,7 +111,7 @@ class TrteebChallenge {
     * @access  protected
     */
     public function enqueue_styles() {
-        wp_enqueue_style( 'trteeb-frontend-style', plugins_url( 'assets/css/frontend-style.css', __FILE__ ), array(), $this->get_version(), 'screen,projection' );
+        wp_enqueue_style( 'trteeb-frontend-style', plugins_url( 'assets/frontend/css/style.css', __FILE__ ), array(), $this->get_version(), 'screen,projection' );
     }
 
     /**
@@ -113,7 +121,7 @@ class TrteebChallenge {
     * @access  protected
     */
     public function enqueue_scripts() {
-        wp_enqueue_script( 'trteeb-frontend-script', plugins_url( 'assets/js/frontend-script.js', __FILE__ ), array( 'jquery' ), $this->get_version(), true );
+        wp_enqueue_script( 'trteeb-frontend-script', plugins_url( 'assets/frontend/js/scripts.js', __FILE__ ), array( 'jquery' ), $this->get_version(), true );
     }
 
 	/**
