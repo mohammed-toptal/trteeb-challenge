@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Trteeb\\MiUsage\\MiUsageConroller' => $baseDir . '/src/MiUsage/MiUsageConroller.php',
+    'Trteeb\\Shortcode\\ShortcodeController' => $baseDir . '/src/Shortcode/ShortcodeController.php',
+    'Trteeb\\Shortcode\\ShortcodeUI' => $baseDir . '/src/Shortcode/ShortcodeUI.php',
     'Trteeb\\Transient\\TransientController' => $baseDir . '/src/Transient/TransientController.php',
     'Trteeb\\WPCLI\\WPCLI' => $baseDir . '/src/WPCLI/WPCLI.php',
 );

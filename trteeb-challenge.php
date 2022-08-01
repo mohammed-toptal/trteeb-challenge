@@ -18,6 +18,7 @@ define( 'TRTEEB__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 require_once( TRTEEB__PLUGIN_DIR . 'vendor/autoload.php' );
 
 use Trteeb\Transient\TransientController;
+use Trteeb\Shortcode\ShortcodeController;
 /* -----------------
  *      CLASS
  * ----------------- */
@@ -95,6 +96,14 @@ class TrteebChallenge {
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
         add_action( 'cli_init', array( $this, 'wp_cli_register_commands' ) );
+
+        $shortcode_controller = new ShortcodeController();
+        add_shortcode( 'trteeb_data', array($shortcode_controller, 'shortcode') );
+        // add_shortcode( 'trteeb_data', array($this, 'shortcode') );
+    }
+
+    public function shortcode( $atts ) {
+        return 'Testing Shortcode data';
     }
 
     /**

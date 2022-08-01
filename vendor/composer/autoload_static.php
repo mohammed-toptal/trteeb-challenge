@@ -23,6 +23,8 @@ class ComposerStaticInit1f71164ed62a7947be85dc1be1e5956d
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Trteeb\\MiUsage\\MiUsageConroller' => __DIR__ . '/../..' . '/src/MiUsage/MiUsageConroller.php',
+        'Trteeb\\Shortcode\\ShortcodeController' => __DIR__ . '/../..' . '/src/Shortcode/ShortcodeController.php',
+        'Trteeb\\Shortcode\\ShortcodeUI' => __DIR__ . '/../..' . '/src/Shortcode/ShortcodeUI.php',
         'Trteeb\\Transient\\TransientController' => __DIR__ . '/../..' . '/src/Transient/TransientController.php',
         'Trteeb\\WPCLI\\WPCLI' => __DIR__ . '/../..' . '/src/WPCLI/WPCLI.php',
     );
