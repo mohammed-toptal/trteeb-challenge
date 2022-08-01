@@ -17,8 +17,9 @@ define( 'TRTEEB__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( TRTEEB__PLUGIN_DIR . 'vendor/autoload.php' );
 
-use Trteeb\Transient\TransientController;
 use Trteeb\Shortcode\ShortcodeController;
+use Trteeb\AJAX\AJAXController;
+
 /* -----------------
  *      CLASS
  * ----------------- */
@@ -78,12 +79,8 @@ class TrteebChallenge {
     * @access  protected
 	*/
 	private function __construct() {
-        // $transient_controller = new TransientController();
-        // $transient_controller->delete();
-        // echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@';
-        // var_dump( $transient_controller->get() );
-        // echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@';
-
+        $shortcode_controller = new ShortcodeController();
+        $ajax_controller      = new AJAXController();
         // register_activation_hook( __FILE__,   array( __CLASS__, 'activator' ) );
         // register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivator' ) );
         // register_uninstall_hook( __FILE__,    array( __CLASS__, 'uninstaller' ) );
@@ -92,18 +89,11 @@ class TrteebChallenge {
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-
         add_action( 'cli_init', array( $this, 'wp_cli_register_commands' ) );
-
-        $shortcode_controller = new ShortcodeController();
         add_shortcode( 'trteeb_data', array($shortcode_controller, 'shortcode') );
-        // add_shortcode( 'trteeb_data', array($this, 'shortcode') );
-    }
-
-    public function shortcode( $atts ) {
-        return 'Testing Shortcode data';
+        add_action( 'wp_ajax_trteeb_data', array($ajax_controller, 'ajax_handler') );
+        add_action( 'wp_ajax_nopriv_trteeb_data', array($ajax_controller, 'ajax_handler') );
     }
 
     /**
