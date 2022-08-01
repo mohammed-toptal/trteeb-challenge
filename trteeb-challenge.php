@@ -21,6 +21,7 @@ require_once( TRTEEB__PLUGIN_DIR . 'vendor/autoload.php' );
 use Trteeb\Shortcode\ShortcodeController;
 use Trteeb\AJAX\AJAXController;
 use Trteeb\Gutenberg\GutenbergController;
+use Trteeb\AdminPage\AdminPageController;
 
 /* -----------------
  *      CLASS
@@ -82,9 +83,10 @@ class TrteebChallenge {
 	*/
 	private function __construct() {
         define( 'TRTEEB__PLUGIN_VER', $this->get_version() );
-        $shortcode_controller = new ShortcodeController();
-        $ajax_controller      = new AJAXController();
-        $gutenberg_controller = new GutenbergController();
+        $shortcode_controller  = new ShortcodeController();
+        $ajax_controller       = new AJAXController();
+        $gutenberg_controller  = new GutenbergController();
+        $admin_page_controller = new AdminPageController();
         // register_activation_hook( __FILE__,   array( __CLASS__, 'activator' ) );
         // register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivator' ) );
         // register_uninstall_hook( __FILE__,    array( __CLASS__, 'uninstaller' ) );
@@ -102,6 +104,9 @@ class TrteebChallenge {
         add_action( 'enqueue_block_editor_assets', array( $gutenberg_controller, 'enqueue_block_editor_assets' ) );
         add_action( 'enqueue_block_assets', array( $gutenberg_controller, 'enqueue_block_assets' ) );
         add_action( 'init', array( $gutenberg_controller, 'register_trteeb_block' ) );
+
+        add_action( 'admin_menu', array( $admin_page_controller, 'add_trteeb_table_admin_menu_page' ) );
+        add_action( 'admin_init', array( $admin_page_controller, 'load_trteeb_table_admin_page' ) );
     }
 
     /**

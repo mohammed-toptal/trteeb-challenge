@@ -8,6 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Trteeb\\AJAX\\AJAXController' => $baseDir . '/src/AJAX/AJAXController.php',
+    'Trteeb\\AdminPage\\AdminPageController' => $baseDir . '/src/AdminPage/AdminPageController.php',
+    'Trteeb\\AdminPage\\AdminPageUI' => $baseDir . '/src/AdminPage/AdminPageUI.php',
+    'Trteeb\\Gutenberg\\GutenbergController' => $baseDir . '/src/Gutenberg/GutenbergController.php',
     'Trteeb\\MiUsage\\MiUsageConroller' => $baseDir . '/src/MiUsage/MiUsageConroller.php',
     'Trteeb\\Shortcode\\ShortcodeController' => $baseDir . '/src/Shortcode/ShortcodeController.php',
     'Trteeb\\Shortcode\\ShortcodeUI' => $baseDir . '/src/Shortcode/ShortcodeUI.php',
